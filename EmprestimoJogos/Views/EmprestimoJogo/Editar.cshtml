@@ -1,0 +1,32 @@
+﻿@model Emprestimo
+
+<div class="container p-5 rounded-5">
+
+    <div class="mb-5 text-center">
+        <h1>Editar empréstimos</h1>
+    </div>
+
+    <form method="post" asp-controller="Emprestimo" asp-action="Editar">
+    <input type="hidden" asp-for=Id />
+
+        <div class="mb-3">
+            <label for="Cliente" class="form-label">Cliente:</label>
+            <input type="text" class="form-control" asp-for="PessoaRecebe" id="Cliente">
+        </div>
+
+        <div class="mb-3">
+            <label for="Fornecedor" class="form-label">Fornecedor:</label>
+            <input type="text" class="form-control" asp-for="PessoaFornece" id="Fornecedor">
+        </div>
+
+        <div class="mb-3">
+            <label for="Jogo" class="form-label">Jogo:</label>
+            <input type="text" class="form-control" asp-for="JogoEmprestado" id="Jogo">
+        </div>
+
+        <div class="d-flex gap-5 mt-5">
+            <button type="submit" class="btn btn-warning w-50">Editar</button>
+            <a class="btn btn-primary w-50" asp-controller="Emprestimo" asp-action="Index">Voltar</a>
+        </div>
+    </form>
+</div>

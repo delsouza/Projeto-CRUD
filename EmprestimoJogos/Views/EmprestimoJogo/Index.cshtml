@@ -1,0 +1,38 @@
+﻿@model IList<Emprestimo>
+
+<div class="container">
+
+    <div class="d-flex justify-content-between align-items-center mb-5">
+        <h1>Empréstimos</h1>
+        <a asp-controller="EmprestimoJogo" asp-action="Adicionar" class="btn btn-primary mx-2"><i class="bi bi-file-earmark-plus-fill"></i> Cadastrar empréstimo</a>
+    </div>
+
+    <table id="Emprestimos" class="table table-hover">
+        <thead>
+            <tr>
+                <th scope="col">Cliente</th>
+                <th scope="col">Fornecedor</th>
+                <th scope="col">Jogo</th>
+                <th scope="col">Data</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var emprestimo in Model)
+            {
+                <tr>
+                    <th scope="row">@emprestimo.PessoaRecebe</th>
+                    <td>@emprestimo.PessoaFornece</td>
+                    <td>@emprestimo.JogoEmprestado</td>
+                    <td>@emprestimo.EmprestimoData</td>
+                    <td>
+                        <a asp-controller="EmprestimoJogo" asp-action="Editar" asp-route-id="@emprestimo.Id" class="btn btn-warning mx-2"><i class="bi bi-pencil-square"></i> Editar</a>
+                        <a asp-controller="EmprestimoJogo" asp-route-id="@emprestimo.Id" asp-action="Excluir" class="btn btn-danger mx-2"><i class="bi bi-trash3-fill"></i> Excluir</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+
