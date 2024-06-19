@@ -7,6 +7,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Models\BancoViewModel.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Content Remove="Views\EmprestimoJogo\Editar.cshtml" />
   </ItemGroup>
 

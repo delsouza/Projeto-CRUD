@@ -1,7 +1,7 @@
-﻿using EmprestimoJogos.Models.Data;
-using EmprestimoJogos.Models;
+﻿using EmprestimoJogos.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using EmprestimoJogos.Context;
 
 namespace EmprestimoJogos.Controllers
 {
@@ -15,7 +15,7 @@ namespace EmprestimoJogos.Controllers
 
         public IActionResult Index()
         {
-            IList<Emprestimo> emprestimos = _db.Emprestimos.ToList();
+            IList<EmprestimoViewModel> emprestimos = _db.Emprestimos.ToList();
             return View(emprestimos);
         }
 
@@ -31,7 +31,7 @@ namespace EmprestimoJogos.Controllers
                 return NotFound();
             }
 
-            Emprestimo emprestimo = _db.Emprestimos.FirstOrDefault(x => x.Id == id);
+            EmprestimoViewModel emprestimo = _db.Emprestimos.FirstOrDefault(x => x.Id == id);
 
             if (emprestimo == null)
             {
@@ -48,7 +48,7 @@ namespace EmprestimoJogos.Controllers
                 return NotFound();
             }
 
-            Emprestimo emprestimo = _db.Emprestimos.FirstOrDefault(x => x.Id == id);
+            EmprestimoViewModel emprestimo = _db.Emprestimos.FirstOrDefault(x => x.Id == id);
 
             if (emprestimo == null)
             {
@@ -58,7 +58,7 @@ namespace EmprestimoJogos.Controllers
             return View(emprestimo);
         }
         [HttpPost]
-        public ActionResult Adicionar(Emprestimo emprestimo)
+        public ActionResult Adicionar(EmprestimoViewModel emprestimo)
         {
             if (ModelState.IsValid)
             {
@@ -75,7 +75,7 @@ namespace EmprestimoJogos.Controllers
         }
 
         [HttpPost]
-        public IActionResult Editar(Emprestimo emprestimo)
+        public IActionResult Editar(EmprestimoViewModel emprestimo)
         {
             if (ModelState.IsValid)
             {
@@ -89,7 +89,7 @@ namespace EmprestimoJogos.Controllers
         }
 
         [HttpPost]
-        public IActionResult Excluir(Emprestimo emprestimo)
+        public IActionResult Excluir(EmprestimoViewModel emprestimo)
         {
             if (emprestimo == null)
             {
