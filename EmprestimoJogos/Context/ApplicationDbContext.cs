@@ -5,11 +5,20 @@ namespace EmprestimoJogos.Context
 {
     public class ApplicationDbContext : DbContext
     {
-        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
+        private readonly IConfiguration _configuration;
+        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options, IConfiguration configuration) : base(options)
         {
+            _configuration = configuration;
         }
-            protected override void OnConfiguring(DbContextOptionsBuilder options) =>
-                options.UseSqlServer("server=DEL\\SQLEXPRESS; Database=EmprestimosJogos; trusted_connection=true; TrustServerCertificate=True");
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            if (!optionsBuilder.IsConfigured)
+            {
+                string cnnString = _configuration.GetConnectionString("cnnEmprestimosJogos").ToString();
+                optionsBuilder.UseSqlServer(cnnString);
+            }
+        }
 
         public DbSet<EmprestimoViewModel> Emprestimos { get; set; }
     }

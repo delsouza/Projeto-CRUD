@@ -1,4 +1,3 @@
-using EmprestimoJogos.Extensions;
 using EmprestimoJogos.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
